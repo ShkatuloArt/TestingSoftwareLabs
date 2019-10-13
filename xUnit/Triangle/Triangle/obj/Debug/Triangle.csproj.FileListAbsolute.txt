@@ -1,0 +1,5 @@
+D:\3k1s\Тестирование ПО\TestingSoftwareLabs\Triangle\Triangle\bin\Debug\Triangle.dll
+D:\3k1s\Тестирование ПО\TestingSoftwareLabs\Triangle\Triangle\bin\Debug\Triangle.pdb
+D:\3k1s\Тестирование ПО\TestingSoftwareLabs\Triangle\Triangle\obj\Debug\Triangle.csprojAssemblyReference.cache
+D:\3k1s\Тестирование ПО\TestingSoftwareLabs\Triangle\Triangle\obj\Debug\Triangle.dll
+D:\3k1s\Тестирование ПО\TestingSoftwareLabs\Triangle\Triangle\obj\Debug\Triangle.pdb
