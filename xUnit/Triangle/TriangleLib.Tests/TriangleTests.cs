@@ -7,7 +7,7 @@ namespace TriangleLib.Tests
     public class TriangleTests
     {
         [TestMethod]
-        public void IsRightTriangle()
+        public void IsTriangle()
         {
             Assert.IsTrue(Triangle.IsTriangle(10, 28, 30));
         }
@@ -45,23 +45,23 @@ namespace TriangleLib.Tests
         [TestMethod]
         public void IsIsoscelesTriangle()
         {
-            Assert.IsTrue(Triangle.IsTriangle(20, 20, 18));
+            Assert.IsTrue(Triangle.IsIsoscelesTriangle(20, 20, 18));
         }
 
         [TestMethod]
         public void IsEquilateralTriangle()
         {
-            Assert.IsTrue(Triangle.IsTriangle(14, 14, 14));
+            Assert.IsTrue(Triangle.IsEquilateralTriangle(14, 14, 14));
         }
 
         [TestMethod]
-        public void IsWrongTriangle()
+        public void IsRightTriangle()
         {
-            Assert.IsFalse(Triangle.IsTriangle(3, 8, 2));
+            Assert.IsTrue(Triangle.IsRightTriangle(3, 4, 5));
         }
 
         [TestMethod]
-        public void IsAnotherRightTriangle()
+        public void IsAnotherTriangle()
         {
             Assert.IsTrue(Triangle.IsTriangle(12, 3, 15));
         }
