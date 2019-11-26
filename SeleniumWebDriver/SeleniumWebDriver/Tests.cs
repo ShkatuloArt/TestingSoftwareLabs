@@ -141,15 +141,8 @@ namespace SeleniumWebDriver
             buttonNext.Click();           
 
             var typeOfClass = GetElementByClassName("cabin");
-            string textTypeOfClass = typeOfClass.Text;
-           
-            bool correctInformation = false;
-
-            if (textTypeOfClass == correctTypeofClass)
-            {
-                correctInformation = true;
-            }
-            Assert.IsTrue(correctInformation);
+            
+            Assert.AreEqual(correctTypeofClass, typeOfClass.Text);
         }
     }
 }
