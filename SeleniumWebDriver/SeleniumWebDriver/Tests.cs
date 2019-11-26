@@ -69,6 +69,8 @@ namespace SeleniumWebDriver
             var departureCityInput = GetElementById("OriginLocation_Combobox");
             departureCityInput.SendKeys("Минск (MSQ), BY" + Keys.Enter);
 
+            Thread.Sleep(1000);
+
             var arrivalCityInput = GetElementById("DestinationLocation_Combobox");
             arrivalCityInput.SendKeys("Москва (MOW), RU" + Keys.Enter);
 
@@ -86,7 +88,9 @@ namespace SeleniumWebDriver
 
             var getTags_button = GetElementsByTagName("button");
             var searchButton = getTags_button[3];
-            searchButton.Click();        
+            searchButton.Click();
+
+            Thread.Sleep(10000);
 
             var getTags_div = GetElementsByTagName("div");
             var selectTypeOfClass = getTags_div[94];
@@ -99,6 +103,8 @@ namespace SeleniumWebDriver
             getTags_button = GetElementsByTagName("button");
             var buttonNext = getTags_button[2];
             buttonNext.Click();
+
+            Thread.Sleep(3000);
             
             getTags_div = GetElementsByTagName("div");
             var appeal = getTags_div[36];
@@ -136,12 +142,14 @@ namespace SeleniumWebDriver
             buttonNext = getTags_button[1];
             buttonNext.Click();
 
+            Thread.Sleep(2000);
+
             getTags_button = GetElementsByTagName("button");
             buttonNext = getTags_button[1];
-            buttonNext.Click();           
+            buttonNext.Click();            
 
             var typeOfClass = GetElementByClassName("cabin");
-            
+           
             Assert.AreEqual(correctTypeofClass, typeOfClass.Text);
         }
     }
