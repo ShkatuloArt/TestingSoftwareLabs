@@ -12,11 +12,11 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace TestAutomation.Utils
 {
-    public abstract class WaitingItemLoad
+    public abstract class BasePage
     {
-        public IWebElement WaitWebElementLoad(IWebDriver driver, IWebElement webElement)
+        public IWebElement WaitWebElementLoad(IWebDriver driver, int timeout, IWebElement webElement)
         {
-            return new WebDriverWait(driver, TimeSpan.FromSeconds(30)).Until(ExpectedConditions.ElementToBeClickable(webElement)); ;
+            return new WebDriverWait(driver, TimeSpan.FromSeconds(timeout)).Until(ExpectedConditions.ElementToBeClickable(webElement)); ;
         }
     }
 }

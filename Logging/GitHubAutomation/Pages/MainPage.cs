@@ -8,8 +8,10 @@ using System;
 
 namespace TestAutomation.Pages
 {
-    public class MainPage : WaitingItemLoad
+    public class MainPage : BasePage
     {
+        private const string BASE_URL = "https://belavia.by/";
+
         [FindsBy(How = How.Id, Using = "next-trigger")]
         private IWebElement ButtonSearch { get; set; }
 
@@ -119,7 +121,13 @@ namespace TestAutomation.Pages
             this.driver = driver;
             PageFactory.InitElements(this.driver, this);
         }
-        
+
+        public MainPage OpenPage()
+        {
+            driver.Navigate().GoToUrl(BASE_URL);
+            return this;
+        }
+
         public string GetCountOfAdults()
         {
             return FieldValuesForAdults.Text;
@@ -132,7 +140,7 @@ namespace TestAutomation.Pages
 
         public PassengersAndServicesPage FillChoiceOfFlights()
         {
-            WaitWebElementLoad(driver, ButtonTypeOfClass);
+            WaitWebElementLoad(driver, 20, ButtonTypeOfClass);
             ButtonTypeOfClass.Click();
             ButtonTypeOfFlight.Click();
             ButtonNextToTabChoiceOfFlights.Click();
@@ -185,7 +193,7 @@ namespace TestAutomation.Pages
         public MainPage ClickSignInAccountButton()
         {
             SignInButton.Click();
-            WaitWebElementLoad(driver, EnterButton);
+            WaitWebElementLoad(driver, 20, EnterButton);
             return this;
         }
 
@@ -200,29 +208,29 @@ namespace TestAutomation.Pages
         public MainPage GoToTabReservationAndFill(Reservation reservation)
         {
             ReservationStatusTab.Click();
-            WaitWebElementLoad(driver, SearchReservationButton);
+            WaitWebElementLoad(driver, 20, SearchReservationButton);
             ReservationCodeInput.SendKeys(reservation.ReservationCode);
             PassengerNameInputReservation.SendKeys(reservation.PassengerName);         
             SearchReservationButton.Click();
-            WaitWebElementLoad(driver, ButtonNext);
+            WaitWebElementLoad(driver, 20, ButtonNext);
             return this;
         }
 
         public MainPage GoToTabRegestrationAndFill(Reservation reservation)
         {
             RegestrationStatusTab.Click();
-            WaitWebElementLoad(driver, ConfirmationOfAgreementWithTermsCheckBox);
+            WaitWebElementLoad(driver, 20, ConfirmationOfAgreementWithTermsCheckBox);
             RegestrationCodeInput.SendKeys(reservation.ReservationCode);
             PassengerNameInputRegestration.SendKeys(reservation.PassengerName);
             ConfirmationOfAgreementWithTermsCheckBox.Click();
             SearchRegestrationButton.Click();
-            WaitWebElementLoad(driver, ModalButton);
+            WaitWebElementLoad(driver, 20, ModalButton);
             return this;
         }
 
         public MainPage MoveToTravellers()
         {
-            WaitWebElementLoad(driver, TravellersField);
+            WaitWebElementLoad(driver, 20, TravellersField);
             TravellersField.Click();            
             return this;
         }

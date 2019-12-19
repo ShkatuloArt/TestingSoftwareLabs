@@ -10,7 +10,7 @@ using log4net.Config;
 
 namespace TestAutomation.Utils
 {
-    public class TestConfig : Logger
+    public class TestListener : Logger
     {
         protected IWebDriver Driver { get; set; }
 
@@ -19,7 +19,6 @@ namespace TestAutomation.Utils
         {
             Logger.Log.Warn("Start driver initializing.");
             Driver = DriverSingleton.GetDriver();
-            Driver.Navigate().GoToUrl("https://belavia.by/");
             Logger.Log.Info("Driver initialized.");
         }
 

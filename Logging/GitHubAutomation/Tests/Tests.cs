@@ -9,7 +9,7 @@ using log4net.Config;
 namespace TestAutomation
 {
     [TestFixture]
-    public class Tests : TestConfig
+    public class Tests : TestListener
     {
         private const string ACCEPTABLE_MAXIMUM_NUMBER_OF_ADULTS = "5";
         private const string ACCEPTABLE_NUMBER_OF_ADULTS_WITH_ONE_INFLANT = "1";
@@ -20,7 +20,8 @@ namespace TestAutomation
         public void EnterAcceptableMaxCountOfAdults()
         {
             Logger.Log.Info("Start EnterAcceptableMaxCountOfAdult test.");
-            MainPage mainPage = new MainPage(Driver)
+            MainPage mainPage = new MainPage(DriverSingleton.GetDriver())
+                .OpenPage()
                 .OpenMoreInfoFields()
                 .MoveToTravellers()
                 .AddAdultsToTravellers(5);
@@ -31,7 +32,8 @@ namespace TestAutomation
         public void EnterOneInfantsWithOneAdults()
         {
             Logger.Log.Info("Start EnterOneInfantsWithOneAdults test.");
-            MainPage mainPage = new MainPage(Driver)
+            MainPage mainPage = new MainPage(DriverSingleton.GetDriver())
+                .OpenPage()
                 .OpenMoreInfoFields()
                 .MoveToTravellers()
                 .AddInfantsToTravellers(2);
@@ -42,7 +44,8 @@ namespace TestAutomation
         public void EnterOneInfantsWithoutAdults()
         {
             Logger.Log.Info("StartEnterOneInfantsWithoutAdults test.");
-            MainPage mainPage = new MainPage(Driver)
+            MainPage mainPage = new MainPage(DriverSingleton.GetDriver())
+                .OpenPage()
                 .OpenMoreInfoFields()
                 .MoveToTravellers()
                 .AddInfantsToTravellers(1)
@@ -54,7 +57,8 @@ namespace TestAutomation
         public void EnterTheDateOfBirthOfTheChildForTheAdult()
         {
             Logger.Log.Info("Start EnterTheDateOfBirthOfTheChildForTheAdult test.");
-            PassengersAndServicesPage mainPage = new MainPage(Driver)
+            PassengersAndServicesPage mainPage = new MainPage(DriverSingleton.GetDriver())
+                .OpenPage()
                 .FillFieldsSearch(CreatingSearch.WithAllProperties())
                 .ClickSearchButton()
                 .FillChoiceOfFlights()
@@ -66,7 +70,8 @@ namespace TestAutomation
         public void EnterTheDateOfBirthOfTheAdultForTheInfant()
         {
             Logger.Log.Info("Start EnterTheDateOfBirthOfTheAdultForTheInfant test.");
-            PassengersAndServicesPage mainPage = new MainPage(Driver)
+            PassengersAndServicesPage mainPage = new MainPage(DriverSingleton.GetDriver())
+                .OpenPage()
                 .FillFieldsSearch(CreatingSearch.WithAllProperties())
                 .MoveToTravellers()
                 .AddInfantsToTravellers(1)
@@ -80,7 +85,8 @@ namespace TestAutomation
         public void SignInToAccount()
         {
             Logger.Log.Info("Start SignInToAccount test.");
-            MainPage mainPage = new MainPage(Driver)
+            MainPage mainPage = new MainPage(DriverSingleton.GetDriver())
+                .OpenPage()
                 .ClickSignInAccountButton()
                 .FillInLoginAndPassword(CreatingSignIn.WithUserProperties());
             Assert.AreEqual("ARTSIOM SHKATULA", mainPage.TextSignInButton.Text);
@@ -90,7 +96,8 @@ namespace TestAutomation
         public void EnterInvalidReservationCodeWhenViewingReservationStatus()
         {
             Logger.Log.Info("Start EnterInvalidReservationCodeWhenViewingReservationStatus test.");
-            MainPage mainPage = new MainPage(Driver)
+            MainPage mainPage = new MainPage(DriverSingleton.GetDriver())
+                .OpenPage()
                 .GoToTabReservationAndFill(CreatingReservationModel.WithReservationProperties());
             Assert.AreEqual("Бронирование не найдено", mainPage.ReservationErrorMessage.Text);
         }
@@ -99,7 +106,8 @@ namespace TestAutomation
         public void BookingATicketWithoutPhoneNumber()
         {
             Logger.Log.Info("Start BookingATicketWithoutPhoneNumber test.");
-            PassengersAndServicesPage mainPage = new MainPage(Driver)
+            PassengersAndServicesPage mainPage = new MainPage(DriverSingleton.GetDriver())
+                .OpenPage()
                 .FillFieldsSearch(CreatingSearch.WithAllProperties())
                 .ClickSearchButton()
                 .FillChoiceOfFlights()
@@ -111,13 +119,14 @@ namespace TestAutomation
         public void CheckingTheCorrectnessOfTheInputData()
         {
             Logger.Log.Info("Start CheckingTheCorrectnessOfTheInputData test.");
-            PassengersAndServicesPage mainPage = new MainPage(Driver)
+            PassengersAndServicesPage mainPage = new MainPage(DriverSingleton.GetDriver())
+                .OpenPage()
                 .FillFieldsSearch(CreatingSearch.WithAllProperties())
                 .ClickSearchButton()
                 .FillChoiceOfFlights()
                 .FillInformationAboutPassanger(CreatingPassanger.WithAllProperties())
                 .ClickButtonNextToFinishTab();
-            CheckFieldsPage checkFieldsPage = new CheckFieldsPage(Driver);
+            CheckFieldsPage checkFieldsPage = new CheckFieldsPage(DriverSingleton.GetDriver());
             Assert.IsTrue(checkFieldsPage.CompareDisplayedDataWithInputData(CreatingPassanger.WithAllProperties()));
         }
 
@@ -125,7 +134,8 @@ namespace TestAutomation
         public void EnterInvalidReservationCodeWhenCheckingIn()
         {
             Logger.Log.Info("Start EnterInvalidReservationCodeWhenCheckingIn test.");
-            MainPage mainPage = new MainPage(Driver)
+            MainPage mainPage = new MainPage(DriverSingleton.GetDriver())
+                .OpenPage()
                 .GoToTabRegestrationAndFill(CreatingReservationModel.WithReservationProperties());
             Assert.AreEqual(ERROR_MESSAGE_CHECK_IN, mainPage.RegestrationErrorMessage.Text);
         }

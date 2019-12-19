@@ -7,7 +7,7 @@ using System;
 
 namespace TestAutomation.Pages
 {
-    public class PassengersAndServicesPage : WaitingItemLoad
+    public class PassengersAndServicesPage : BasePage
     {
         [FindsBy(How = How.Id, Using = "passenger-0.dateOfBirth")]
         private IWebElement DateOfBirthAdultField { get; set; }
@@ -61,21 +61,21 @@ namespace TestAutomation.Pages
   
         public PassengersAndServicesPage FillDateOfBirthAdultField(Passanger passanger)
         {
-            WaitWebElementLoad(driver, ButtonNextToTabServices);
+            WaitWebElementLoad(driver, 20, ButtonNextToTabServices);
             DateOfBirthAdultField.SendKeys(passanger.PassangerDateOfBirth);
             return this;
         }
 
         public PassengersAndServicesPage FillDateOfBirthInfantField(Passanger passanger)
         {
-            WaitWebElementLoad(driver, ButtonNextToTabServices);
+            WaitWebElementLoad(driver, 20, ButtonNextToTabServices);
             DateOfBirthInfantField.SendKeys(passanger.PassangerDateOfBirth);
             return this;
         }
 
         public PassengersAndServicesPage FillInformationAboutPassanger(Passanger passanger)
         {
-            WaitWebElementLoad(driver, ButtonNextToTabServices);
+            WaitWebElementLoad(driver, 20, ButtonNextToTabServices);
             PassengerTitle.Click();
             PassengerTitle.SendKeys(Keys.Enter);
             PassangerFirstName.SendKeys(passanger.PassangerFirstName);
@@ -92,7 +92,7 @@ namespace TestAutomation.Pages
 
         public PassengersAndServicesPage ClickButtonNextToFinishTab()
         {
-            WaitWebElementLoad(driver, ButtonNextToFinishTab);
+            WaitWebElementLoad(driver, 20, ButtonNextToFinishTab);
             ButtonNextToFinishTab.Click();
             return this;
         }
