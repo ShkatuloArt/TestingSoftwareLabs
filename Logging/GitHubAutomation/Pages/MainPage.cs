@@ -149,8 +149,8 @@ namespace TestAutomation.Pages
 
         public MainPage FillFieldsSearch(Search search)
         {
-            DepartureCityField.SendKeys(search.DepartureCity + Keys.Enter);
-            System.Threading.Thread.Sleep(1000);
+            DepartureCityField.SendKeys(search.DepartureCity + Keys.Enter);            
+            driver.Manage().Timeouts().ImplicitWait.Add(TimeSpan.FromSeconds(30));
             ArrivalCityField.SendKeys(search.ArrivalCity + Keys.Enter);
             JourneyType.Click();
             CalendarField.Click();
