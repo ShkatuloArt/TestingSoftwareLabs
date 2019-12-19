@@ -173,7 +173,7 @@ namespace TestAutomation.Pages
 
         public MainPage AddAdultsToTravellers(int countAdults)
         {
-            for (int i = 1; i <= countAdults; i++)
+            for (int i = 0; i <= countAdults; i++)
                 PlusOneAdultButton.Click();
             return this;
         }
